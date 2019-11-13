@@ -1,0 +1,29 @@
+version: '2.1'
+
+services:
+  mainCtrl:
+    container_name: ansible_ctrl1
+    # Download Image (specify the tag if you need different linux distribution), 
+    # not adding the tag will always get the latest using ubuntu version
+    # docker pull mohmaherid/ansible-controller:latest-ubuntu
+    # docker pull mohmaherid/ansible-controller:latest-debian
+    image: "mohmaherid/ansible-controller"    
+    # build: .
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+    volumes:
+      # map local folders to image volumes
+      # - ./ansible-etc:/etc/ansible
+      - ./ssh:/root/.ssh
+      - ./playbooks:/ansible-playbooks
+    # stdin_open: true
+    tty: true
+    # Switch to the playbooks folder
+    working_dir: /ansible-playbooks
+    #docker run -v `pwd`/playbooks:/ansible-playbooks -v `pwd`/ssh:/root/.ssh -v `pwd`/ansible-etc/:/etc/ansible -it my-ansible-controller
+    # command: 'ansible-playbook -i /ansible-playbooks/myhosts.yaml /ansible-playbooks/test.yaml'
+    # Using Interactive mode with entry point to run an Ansible-playbook
+    # Parameters (/bin/bash -c for running command) (ansible-playbook -i for inventory hosts file) [path to playbook.yaml]
+    # entrypoint: /bin/bash -c 'ansible-playbook -i myhosts.yaml /ansible-playbooks/test.yaml'
+    entrypoint: /bin/bash -c 'ansible-playbook -i inventories/aws /ansible-playbooks/test.yaml'

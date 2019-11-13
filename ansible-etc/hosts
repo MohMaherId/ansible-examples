@@ -1,0 +1,31 @@
+# Ex 1: Ungrouped hosts, specify before any group headers.
+
+## green.example.com
+## 192.168.100.1
+
+# Example of multiple children Groups under servers
+#[my-servers:children]
+#servers-g1
+#servers-g2
+
+## Ex 2: A collection of hosts belonging to the 'my-servers' group
+## collection of web servers
+#[servers-g1]
+#ec2-52-91-27-196.compute-1.amazonaws.com
+
+#[servers-g2]
+#52.91.27.196
+
+## Group All nodejs children under nodejs
+#[nodejs:children]
+#nodejs-dev
+#nodejs-prd
+
+## Group of DB Servers Dev
+#[nodejs-dev]
+#dev-node[01:02].domain.com
+
+#[nodejs-prd]
+#node[01:02].domain.com
+#10.0.1.3
+#10.0.1.4

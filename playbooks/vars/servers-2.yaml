@@ -1,0 +1,7 @@
+# my_servers-2.yml
+# --------------------
+#
+# Variables for EC2 instances named "my-servers-2"
+---
+rootFolder: /tmp
+createFile: true

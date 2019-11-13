@@ -1,0 +1,13 @@
+# Insall JDK 
+remote_user: ec2-user
+vars:  
+  createFile: false
+  rootFolder: /opt/java
+  # user_owner: ec2-user
+  # user_group: ec2-user
+  filePath: "{{rootFolder}}/jdk1.8"     
+roles: 
+  - install_java  
+tasks: 
+  - name: test
+    debug: 'echo test'

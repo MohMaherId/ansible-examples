@@ -1,0 +1,7 @@
+# my_servers-1.yml
+# --------------------
+#
+# Variables for EC2 instances named "my-servers-1"
+---
+rootFolder: ~
+createFile: false
